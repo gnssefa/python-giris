@@ -15,10 +15,10 @@ print("sefa","güneş", end=":")
 
 
 
-adı = "sefa"
-soyadı = "güneş"
-yaşı = 22
+name = "sefa"
+surname= "güneş"
+age = 22
 
-print("Kişinin adı:{}\nKişinin Soyadı:{}\n,Kişinin Yaşı:{}".format(adı,soyadı,yaşı))
+print("Kişinin adı:{}\nKişinin Soyadı:{}\n,Kişinin Yaşı:{}".format(name,surname,age))
 
-print(f"Kişinin adı:{adı}\nKişinin Soyadı:{soyadı}\nKişinin Yaşı:{yaşı}")
+print(f"Kişinin adı:{name}\nKişinin Soyadı:{surname}\nKişinin Yaşı:{age}")
