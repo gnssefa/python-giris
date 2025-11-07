@@ -60,10 +60,10 @@ phone_directory = dict()
 #İşlevsel Fonksiyonlar Başlangıç
 #Numara ekleme 
 def directory_add():
-    take_name = input("Lütfen isim yazınız :")
-    take_num = input("Lütfen numara yazınız :")
+    take_name = input("Lütfen isim yazınız :").lower()
+    take_num = input("Lütfen numara yazınız :").lower()
 
-    phone_directory.setdefault(take_name,take_num).upper
+    phone_directory.setdefault(take_name,take_num)
     print(f"{take_name} adlı kişi rehbere eklendi ! ")
  
  # Numaraları Listeleme
@@ -89,6 +89,46 @@ def rmv_numbers():
                 
             else :
                 print("Silme işleminden vazgeçildi !")
+
+# Kişi bilgisi düzenleme
+ 
+def nums_update():
+    updatelenecek = input("Değişkirmek istediğiniz kişinin adını giriniz :").lower()
+    if updatelenecek not in phone_directory:
+        print("Bu kişi rehberinizde bulunmamaktadır !!")
+        return
+    else :
+        choose=input("İsim değiştirmek için 1'i tuşlayınız\nNumara değiştirmek için 2'yi tuşlayınız \nHem isim hem numara değiştirmek için 3'ü tuşlayınız")
+        if choose == "1" :
+            new_name = input("Lütfen kişinin yeni ismini giriniz :").lower()
+            for i,j in phone_directory.items():
+                if i == updatelenecek:
+                    phone_directory.setdefault(new_name,j)
+                    phone_directory.pop(updatelenecek)
+                    break
+        elif choose == "2":
+            new_num = input("Lütfen yeni numarayı giriniz :")
+            for i,j in phone_directory.items():
+                if i==updatelenecek:
+                    phone_directory.update({updatelenecek:new_num})
+                    break
+        elif choose =="3":
+            new_name = input("Lütfen yeni ismi giriniz :").lower()
+            new_num = input("Lütfen yeni ismi giriniz :").lower()
+
+            for i,j in phone_directory.items():
+                if i == updatelenecek:
+                    phone_directory.setdefault(new_name,new_num)
+                    phone_directory.pop(updatelenecek)
+                    break
+
+
+
+       
+       
+
+
+
                 
         
              
@@ -98,7 +138,7 @@ def rmv_numbers():
 
 while True :
     print("*"*30)
-    y = input("Numara eklemek istiyorsanız : 1'i tuşlayın\n Numara Silmek istiyorsan 2'yi tuşla\n Rehberi görmek isterseniz 3'ü tuşlayın\nİşlem yapmak istemiyorsanız 4'ü tuşlayınız\n --Ne yapmak istersiniz(1,2,3,4): ")
+    y = input("Numara eklemek istiyorsanız : 1'i tuşlayın\n Numara Silmek istiyorsan 2'yi tuşla\n Rehberi görmek isterseniz 3'ü tuşlayın\nKişi bilgisi düzenlemek istiyorsan 9'u tuşla\nİşlem yapmak istemiyorsanız 4'ü tuşlayınız\n --Ne yapmak istersiniz(1,2,3,4): ")
     if y == "1":
         print("Ekleme işlemine yönlendirildiniz")
         directory_add()
@@ -107,6 +147,9 @@ while True :
         rmv_numbers()
     elif y == "3":
         directory_printer()
+    elif y == "9":
+        nums_update()
+
     elif y == "4":
         print("İşlem sonlandırıldı !")
         break
